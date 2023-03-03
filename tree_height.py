@@ -19,16 +19,15 @@ def compute_height(n, parents):
         child = np.where(nodes == currentNode)
         
         # Iet augšā
-        if len(child[0]) == 0 or (child[0][0] in visited and (len(child[0]) >= 2 and child[0][1] in visited)):
+        if len(child[0]) == 0 or (child[0][0] in visited and len(child[0]) < 2)):
             currentNode = parentNodes.pop()
         # Iet lejā
         else:
-            
+            if len(child[0]) > 1:
+                if child[0][0] in visited and child[0][1] in visited
+                    currentNode = parentNodes.pop()
             if child[0][0] in visited:
-                try:
-                    child = child[0][1]
-                except:
-                    print(child)
+                child = child[0][1]
             else:
                 child = child[0][0]
             parentNodes.append(currentNode)
@@ -67,26 +66,3 @@ def main():
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-
-# maxDziļums
-# nodeList
-# tekošais
-# vecāki
-# apskatītie
-
-# for tik cik ir dotas virsotnes
-#     child = pašreizējās virsotnes bērni
-#     ja nav bērnu vai abi bērni jau ir apskatīti tad:
-#         ja tekošais elements nav iekš apskatītiem tad:
-#             apskatītie.append(tekošais)
-#         tekošais = vecāki.pop()
-#     citādāk:
-#         ja bērns [0] nav iekš apskatīto steka:
-#             bērns ir [0]
-#         citādāk:
-#             bērns ir [1]
-#         vecāki.append(tekošais)
-#         tekošais = bērns
-#         ja vecāki.garums > maxDziļums:
-#             maxDziļums = vecāki.garums
-
