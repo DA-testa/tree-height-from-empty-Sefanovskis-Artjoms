@@ -12,7 +12,7 @@ def compute_height(n, parents):
     max_height = 0
     # Your code here
     nodes = np.array(list(map(int,parents.split(" "))))
-    currentNode = np.where(nodes == -1)[0]
+    currentNode = np.where(nodes == -1)[0][0]
     parentNodes = []
     visited = []
     for i in range(int(n)):
@@ -25,10 +25,8 @@ def compute_height(n, parents):
         else:
             
             if child[0][0] in visited:
-                try:
+                if len(child[0]) > 1:
                     child = child[0][1]
-                except:
-                    print(child)
             else:
                 child = child[0][0]
             parentNodes.append(currentNode)
