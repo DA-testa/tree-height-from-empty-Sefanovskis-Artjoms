@@ -11,7 +11,7 @@ def compute_height(n, parents):
     # Write this function
     max_height = 0
     # Your code here
-    nodes = np.array(list(map(int,parents.split(" "))))
+    nodes = np.array(list(map(int,parents.split())))
     currentNode = np.where(nodes == -1)[0]
     parentNodes = []
     visited = []
