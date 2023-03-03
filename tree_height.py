@@ -24,7 +24,7 @@ def compute_height(n, parents):
         # Iet lejā
         else:
             if len(child[0]) > 1:
-                if child[0][0] in visited and child[0][1] in visited
+                if child[0][0] in visited and child[0][1] in visited:
                     currentNode = parentNodes.pop()
             if child[0][0] in visited:
                 child = child[0][1]
