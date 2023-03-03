@@ -19,7 +19,7 @@ def compute_height(n, parents):
         child = np.where(nodes == currentNode)
         
         # Iet augšā
-        if len(child[0]) == 0 or (child[0][0] in visited and len(child[0]) < 2)):
+        if len(child[0]) == 0 or (child[0][0] in visited and len(child[0]) < 2):
             currentNode = parentNodes.pop()
         # Iet lejā
         else:
