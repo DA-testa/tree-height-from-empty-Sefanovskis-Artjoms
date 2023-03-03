@@ -23,8 +23,12 @@ def compute_height(n, parents):
             currentNode = parentNodes.pop()
         # Iet lejā
         else:
+            
             if child[0][0] in visited:
-                child = child[0][1]
+                try:
+                    child = child[0][1]
+                except:
+                    print(child)
             else:
                 child = child[0][0]
             parentNodes.append(currentNode)
