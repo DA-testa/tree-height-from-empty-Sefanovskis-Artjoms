@@ -39,7 +39,7 @@ def main():
     # implement input form keyboard and from files
     inpMethod = input()
     # let user input file name to use, don't allow file names with letter a
-    if inpMethod[0] == "F":
+    if "F" in inpMethod:
         fileName = input()
         if "a" in fileName:
             return
@@ -49,7 +49,7 @@ def main():
     # account for github input inprecision
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
-    elif inpMethod[0] == "I":
+    elif "I" in inpMethod:
         nodeCount = input()
         nodes = input()
     # call the function and output it's result
