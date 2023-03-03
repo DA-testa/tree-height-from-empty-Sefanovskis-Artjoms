@@ -12,36 +12,31 @@ def compute_height(n, parents):
     max_height = 0
     # Your code here
     nodes = np.array(list(map(int,parents.split(" "))))
-    currentNode = np.where(nodes == -1)[0][0]
-    parentNodes = [-1]
-    visited = [currentNode]
+    currentNode = np.where(nodes == -1)[0]
+    parentNodes = []
+    visited = []
     for i in range(int(n)):
-        children = np.where(nodes == currentNode)[0]
-        if len(children) >1:
-            child1 = children[0]
-            child2 = children[1]
-        elif len(children) == 1:
-            child1 = children[0]
-            child2 = None
-        else:
-            child1 = None
-            child2 = None
-
+        child = np.where(nodes == currentNode)
+        
         # Iet augšā
-        if (child1 in visited and child2 in visited) or (not child1 and not child2) or (child1 in visited and not child2):
+        if len(child[0]) == 0 or (child[0][0] in visited and (len(child[0]) >= 2 and child[0][1] in visited)):
             currentNode = parentNodes.pop()
-            continue
         # Iet lejā
-        if child1 in visited:
-            child = child2
         else:
-            child = child1
-        parentNodes.append(currentNode)
-        currentNode = child
-        visited.append(currentNode)
-        if len(parentNodes) > max_height:
-            max_height = len(parentNodes)
-    return max_height
+            
+            if child[0][0] in visited:
+                try:
+                    child = child[0][1]
+                except:
+                    print(child)
+            else:
+                child = child[0][0]
+            parentNodes.append(currentNode)
+            currentNode = child
+            visited.append(currentNode)
+            if len(parentNodes) > max_height:
+                max_height = len(parentNodes)
+    return max_height+1
 
 
 def main():
