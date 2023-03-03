@@ -15,7 +15,7 @@ def compute_height(n, parents):
     currentNode = np.where(nodes == -1)[0]
     parentNodes = []
     visited = []
-    for i in range(n):
+    for i in range(int(n)):
         child = np.where(nodes == currentNode)
         
         # Iet augšā
