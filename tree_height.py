@@ -43,7 +43,7 @@ def main():
         fileName = input()
         if "a" in fileName:
             return
-        with open("test/" + fileName, "r") as f:
+        with open("./test/" + fileName, "r") as f:
             nodeCount = int(f.readline())
             nodes = f.readline
     # account for github input inprecision
