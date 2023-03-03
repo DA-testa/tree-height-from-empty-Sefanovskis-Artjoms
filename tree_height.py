@@ -45,7 +45,7 @@ def main():
             return
         with open("./test/" + fileName, "r") as f:
             nodeCount = int(f.readline())
-            nodes = f.readline
+            nodes = f.readline()
     # account for github input inprecision
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
