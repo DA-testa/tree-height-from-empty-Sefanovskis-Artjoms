@@ -27,29 +27,21 @@ def compute_height(n, parents):
             child1 = None
             child2 = None
 
-        # print("Children",child1,child2)
         # Iet augšā
-        # print(len(parentNodes))
         if child1 == None and child2 == None:
             currentNode = parentNodes.pop()
-            # print("If- ",1)
-        elif child1 in visited and not child2:
+        elif child1 in visited and child2 == None:
             currentNode = parentNodes.pop()
-            # print("If- ",2)
         elif child1 in visited and child2 in visited:
             currentNode = parentNodes.pop()
-            # print("If- ",3)
         # Iet lejā
         else:
             if not child1 in visited:
                 child = child1
-                # print("If- ",4)
             elif not child2 in visited:
                 child = child2
-                # print("If- ",5)
             else:
                 currentNode = parentNodes.pop()
-                # print("If- ",6)
             parentNodes.append(currentNode)
             currentNode = child
             visited.append(currentNode)
