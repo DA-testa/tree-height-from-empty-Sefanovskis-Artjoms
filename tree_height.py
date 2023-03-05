@@ -13,31 +13,49 @@ def compute_height(n, parents):
     # Your code here
     nodes = np.array(list(map(int,parents.split(" "))))
     currentNode = np.where(nodes == -1)[0][0]
-    parentNodes = []
+    parentNodes = [-1]
     visited = []
     for i in range(int(n)):
-        child = np.where(nodes == currentNode)
-        
+        children = np.where(nodes == currentNode)[0]
+        if len(children) >1:
+            child1 = children[0]
+            child2 = children[1]
+        elif len(children) == 1:
+            child1 = children[0]
+            child2 = None
+        else:
+            child1 = None
+            child2 = None
+
+        # print("Children",child1,child2)
         # Iet augšā
-        if len(child[0]) == 0 or (child[0][0] in visited and (len(child[0]) >= 2 and child[0][1] in visited)):
+        # print(len(parentNodes))
+        if child1 == None and child2 == None:
             currentNode = parentNodes.pop()
+            # print("If- ",1)
+        elif child1 in visited and not child2:
+            currentNode = parentNodes.pop()
+            # print("If- ",2)
+        elif child1 in visited and child2 in visited:
+            currentNode = parentNodes.pop()
+            # print("If- ",3)
         # Iet lejā
         else:
-            
-            if child[0][0] in visited:
-                if len(child[0]) > 1:
-                    child = child[0][1]
-                else:
-                    currentNode = parentNodes.pop()
-                    continue
+            if not child1 in visited:
+                child = child1
+                # print("If- ",4)
+            elif not child2 in visited:
+                child = child2
+                # print("If- ",5)
             else:
-                child = child[0][0]
+                currentNode = parentNodes.pop()
+                # print("If- ",6)
             parentNodes.append(currentNode)
             currentNode = child
             visited.append(currentNode)
             if len(parentNodes) > max_height:
                 max_height = len(parentNodes)
-    return max_height+1
+    return max_height
 
 
 def main():
@@ -69,3 +87,4 @@ sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
 
+    
